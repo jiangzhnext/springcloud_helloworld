@@ -7,3 +7,4 @@
 | v2.01 | 初始化consumer和provider | 对应第二章 |
 | ------ | ------ | ------ |
 | v3.04 | 初始化Eureka Server和Client | 对应第三章第四小节 |
+| v3.06 | Eureka Consumer调用演示 | 对应第三章第四小节 |

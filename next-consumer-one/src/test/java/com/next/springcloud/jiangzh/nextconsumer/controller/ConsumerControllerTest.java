@@ -27,7 +27,7 @@ public class ConsumerControllerTest extends BaseControllerTest {
         String uri = "/consumer/sayHello";
 
         String mvcResult=mockMvc.perform(MockMvcRequestBuilders.get(uri)
-                .param("message","consumer")
+                .param("message","eurekaClient")
                 .accept(MediaType.APPLICATION_JSON_UTF8))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn().getResponse().getContentAsString();

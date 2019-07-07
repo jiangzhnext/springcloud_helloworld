@@ -1,19 +1,36 @@
 package com.next.springcloud.jiangzh.nextconsumer.service;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 @Service(value = "consumerServiceOne")
 public class ConsumerHelloServiceImpl implements ConsumerHelloServiceAPI {
 
-    @Value(value = "${server.port}")
-    private String serverPort;
+    @Autowired
+    private RestTemplate restTemplate;
+
+    @Autowired
+    private LoadBalancerClient eurekaClient;
 
     @Override
     public String showHello(String message) {
+        // get registry
+        ServiceInstance instance = eurekaClient.choose("helloService");
+        String hostName = instance.getHost();
+        int port = instance.getPort();
 
-        System.err.println("Hi, ConsumerService "+serverPort+"-message : "+message);
+        // remote call provider
+        String uri = "/provider/sayHello?message="+message;
+        String url = "http://"+ hostName +":"+ port + uri;
 
-        return "Hi, ConsumerService "+serverPort+"-message : "+message;
+        // http invoker
+        String result = restTemplate.getForObject(url, String.class);
+
+        System.err.println("result="+result);
+
+        return result;
     }
 }
