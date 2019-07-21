@@ -10,3 +10,4 @@
 | v3.06 | Eureka Consumer调用演示 |  |
 | ------ | ------ | ------ |
 | v5.02 | Ribbon Helloworld |  |
+| v5.04 | Ribbon整合Eureka |  |

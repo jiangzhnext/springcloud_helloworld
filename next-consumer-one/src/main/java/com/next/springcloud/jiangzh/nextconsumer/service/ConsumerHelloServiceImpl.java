@@ -12,19 +12,11 @@ public class ConsumerHelloServiceImpl implements ConsumerHelloServiceAPI {
     @Autowired
     private RestTemplate restTemplate;
 
-    @Autowired
-    private LoadBalancerClient eurekaClient;
-
     @Override
     public String showHello(String message) {
-        // get registry
-        ServiceInstance instance = eurekaClient.choose("helloService");
-        String hostName = instance.getHost();
-        int port = instance.getPort();
-
-        // remote call provider
+        // remote call provider - 不需要进行服务发现【Ribbon帮助我们做完了】
         String uri = "/provider/sayHello?message="+message;
-        String url = "http://"+ hostName +":"+ port + uri;
+        String url = "http://helloService"+ uri;
 
         // http invoker
         String result = restTemplate.getForObject(url, String.class);
