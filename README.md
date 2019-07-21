@@ -11,3 +11,4 @@
 | ------ | ------ | ------ |
 | v5.02 | Ribbon Helloworld |  |
 | v5.04 | Ribbon整合Eureka |  |
+| v5.08 | IRule演示 | 包括全局配置和客户端配置 |

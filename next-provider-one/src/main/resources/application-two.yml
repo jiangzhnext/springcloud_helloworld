@@ -1,19 +1,14 @@
 server:
-  port: 8301
+  port: 8202
 
 spring:
   application:
-    name: helloServiceConsumer
+    name: helloService
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
-
-
-#helloService:
-#  ribbon:
-#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
 
 logging:
   config: classpath:logback.xml
