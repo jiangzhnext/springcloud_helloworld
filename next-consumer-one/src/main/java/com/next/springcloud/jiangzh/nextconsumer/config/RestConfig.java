@@ -1,8 +1,6 @@
 package com.next.springcloud.jiangzh.nextconsumer.config;
 
-import com.netflix.loadbalancer.IRule;
-import com.netflix.loadbalancer.RandomRule;
-import com.netflix.loadbalancer.RoundRobinRule;
+import com.netflix.loadbalancer.*;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +18,11 @@ public class RestConfig {
     @Bean
     public IRule iRule(){
         return new RandomRule();
+    }
+
+    @Bean
+    public IPing iPing(){
+        return new PingUrl(false,"/provider/sayHello?message=ping");
     }
 
 }
