@@ -3,6 +3,7 @@ package com.next.jiangzh.springcloud.helloworld;
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
 import com.netflix.hystrix.HystrixCommandKey;
+import com.netflix.hystrix.HystrixCommandProperties;
 
 public class CommandHelloWorld extends HystrixCommand<String> {
 
@@ -15,6 +16,10 @@ public class CommandHelloWorld extends HystrixCommand<String> {
         super(Setter
                 .withGroupKey(HystrixCommandGroupKey.Factory.asKey("commandHelloWorld"))
                 .andCommandKey(HystrixCommandKey.Factory.asKey("commandKeyName"))
+                .andCommandPropertiesDefaults(
+                        HystrixCommandProperties.defaultSetter()
+                            .withRequestCacheEnabled(false)
+                )
         );
         this.name = name;
     }
@@ -30,5 +35,13 @@ public class CommandHelloWorld extends HystrixCommand<String> {
         Thread.sleep(800l);
 
         return "Run method, name:"+name;
+    }
+
+    /*
+        判断请求是否同一个key
+     */
+    @Override
+    protected String getCacheKey() {
+        return String.valueOf(name);
     }
 }

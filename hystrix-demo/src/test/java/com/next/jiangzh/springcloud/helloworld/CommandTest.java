@@ -1,5 +1,6 @@
 package com.next.jiangzh.springcloud.helloworld;
 
+import com.netflix.hystrix.strategy.concurrency.HystrixRequestContext;
 import org.junit.Test;
 import rx.Observable;
 import rx.Observer;
@@ -22,6 +23,29 @@ public class CommandTest {
         CommandHelloWorld helloWorld = new CommandHelloWorld("Next学院万岁");
         String result = helloWorld.execute();
         System.out.println("result="+result+" , spending:"+ (System.currentTimeMillis() - startTime));
+    }
+
+    /*
+        请求缓存
+     */
+    @Test
+    public void requestCache(){
+        // 请求缓存必须要有上下文开启和关闭
+        HystrixRequestContext context = HystrixRequestContext.initializeContext();
+
+        System.err.println("current Thread first:"+Thread.currentThread().getName());
+        CommandHelloWorld h1 = new CommandHelloWorld("h1");
+        String r1 = h1.execute();
+        System.out.println("r1="+r1);
+        CommandHelloWorld h2 = new CommandHelloWorld("h2");
+        String r2 = h2.execute();
+        System.out.println("r2="+r2);
+        CommandHelloWorld h3 = new CommandHelloWorld("h1");
+        String r3 = h3.execute();
+        System.out.println("r3="+r3+" , isCache:"+h3.isResponseFromCache());
+
+        // 上下文关闭
+        context.close();
     }
 
     /*
