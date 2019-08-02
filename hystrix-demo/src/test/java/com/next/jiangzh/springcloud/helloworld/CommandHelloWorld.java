@@ -2,6 +2,7 @@ package com.next.jiangzh.springcloud.helloworld;
 
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
+import com.netflix.hystrix.HystrixCommandKey;
 
 public class CommandHelloWorld extends HystrixCommand<String> {
 
@@ -11,9 +12,10 @@ public class CommandHelloWorld extends HystrixCommand<String> {
         // Hystrix必须写groupKey
         // 服务分组
         // 如果没有指定线程池，则会用groupKey标识一个线程池
-        super(Setter.withGroupKey(
-                HystrixCommandGroupKey
-                        .Factory.asKey("commandHelloWorld")));
+        super(Setter
+                .withGroupKey(HystrixCommandGroupKey.Factory.asKey("commandHelloWorld"))
+                .andCommandKey(HystrixCommandKey.Factory.asKey("commandKeyName"))
+        );
         this.name = name;
     }
 

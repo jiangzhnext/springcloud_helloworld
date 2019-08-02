@@ -16,3 +16,4 @@
 | ------ | ------ | ------ |
 | v7.09 | HystrixCommand四种调用方式演示 |  |
 | v7.12 | HystrixObservableCommand演示 |  |
+| v7.13 | 设置GroupKey和CommandKeyName |  |
