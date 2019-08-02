@@ -15,3 +15,4 @@
 | v5.10 | IPing演示 |  |
 | ------ | ------ | ------ |
 | v7.09 | HystrixCommand四种调用方式演示 |  |
+| v7.12 | HystrixObservableCommand演示 |  |

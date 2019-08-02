@@ -24,7 +24,7 @@ public class CommandHelloWorld extends HystrixCommand<String> {
     @Override
     protected String run() throws Exception {
         // 查询已售座位信息
-
+        System.err.println("current Thread second:"+Thread.currentThread().getName());
         Thread.sleep(800l);
 
         return "Run method, name:"+name;

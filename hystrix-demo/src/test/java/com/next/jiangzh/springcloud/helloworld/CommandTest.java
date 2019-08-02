@@ -17,6 +17,7 @@ public class CommandTest {
      */
     @Test
     public void execTest(){
+        System.err.println("current Thread first:"+Thread.currentThread().getName());
         long startTime = System.currentTimeMillis();
         CommandHelloWorld helloWorld = new CommandHelloWorld("Next学院万岁");
         String result = helloWorld.execute();
