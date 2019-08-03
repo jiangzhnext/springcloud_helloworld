@@ -18,15 +18,16 @@ public class CommandHelloWorld extends HystrixCommand<String> {
                         HystrixCommandProperties.defaultSetter()
                             .withRequestCacheEnabled(false)
                             .withExecutionTimeoutInMilliseconds(1000)
-                            .withExecutionIsolationStrategy(HystrixCommandProperties.ExecutionIsolationStrategy.THREAD)
+                            .withExecutionIsolationStrategy(HystrixCommandProperties.ExecutionIsolationStrategy.SEMAPHORE)
+                            .withExecutionIsolationSemaphoreMaxConcurrentRequests(4)
                 )
-                .andThreadPoolPropertiesDefaults(
-                        HystrixThreadPoolProperties.Setter()
-                        // 限流
-                        .withCoreSize(2)
-                        .withMaxQueueSize(2)
-                        .withMaximumSize(3).withAllowMaximumSizeToDivergeFromCoreSize(true)
-                )
+//                .andThreadPoolPropertiesDefaults(
+//                        HystrixThreadPoolProperties.Setter()
+//                        // 限流
+//                        .withCoreSize(2)
+//                        .withMaxQueueSize(2)
+//                        .withMaximumSize(3).withAllowMaximumSizeToDivergeFromCoreSize(true)
+//                )
         );
         this.name = name;
     }
@@ -39,13 +40,25 @@ public class CommandHelloWorld extends HystrixCommand<String> {
     protected String run() throws Exception {
         // 查询已售座位信息
         System.err.println("current Thread second:"+Thread.currentThread().getName());
-        Thread.sleep(800);
+        int i = 6/0;
+//        Thread.sleep(800);
         return "Run method, name:"+name;
     }
 
     /*
-        判断请求是否同一个key
+        如果查询失败  Plan B
+            - 座位已经售完
+            - 请稍后再试
+            - 从缓存中获取已售座位信息
      */
+    @Override
+    protected String getFallback() {
+        return "Fallback method, name="+name;
+    }
+
+    /*
+            判断请求是否同一个key
+         */
     @Override
     protected String getCacheKey() {
         return String.valueOf(name);
