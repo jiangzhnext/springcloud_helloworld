@@ -1,6 +1,7 @@
 package com.next.jiangzh.springcloud.helloworld;
 
 import com.netflix.hystrix.*;
+import com.netflix.hystrix.exception.HystrixBadRequestException;
 
 public class CommandHelloWorld extends HystrixCommand<String> {
 
@@ -15,11 +16,13 @@ public class CommandHelloWorld extends HystrixCommand<String> {
                 .andCommandKey(HystrixCommandKey.Factory.asKey("commandKeyName"))
                 .andThreadPoolKey(HystrixThreadPoolKey.Factory.asKey("nextThreadPool"))
                 .andCommandPropertiesDefaults(
-                        HystrixCommandProperties.defaultSetter()
-                            .withRequestCacheEnabled(false)
-                            .withExecutionTimeoutInMilliseconds(1000)
-                            .withExecutionIsolationStrategy(HystrixCommandProperties.ExecutionIsolationStrategy.SEMAPHORE)
-                            .withExecutionIsolationSemaphoreMaxConcurrentRequests(4)
+                    HystrixCommandProperties.defaultSetter()
+                        .withRequestCacheEnabled(false)
+                        .withExecutionTimeoutInMilliseconds(1000)
+                        .withExecutionIsolationStrategy(HystrixCommandProperties.ExecutionIsolationStrategy.SEMAPHORE)
+                        .withExecutionIsolationSemaphoreMaxConcurrentRequests(2)
+                        .withFallbackIsolationSemaphoreMaxConcurrentRequests(2)
+                        .withFallbackEnabled(true)
                 )
 //                .andThreadPoolPropertiesDefaults(
 //                        HystrixThreadPoolProperties.Setter()
@@ -40,8 +43,27 @@ public class CommandHelloWorld extends HystrixCommand<String> {
     protected String run() throws Exception {
         // 查询已售座位信息
         System.err.println("current Thread second:"+Thread.currentThread().getName());
-        Thread.sleep(800);
+//        try{
+//            int i = 6/0;
+//        }catch (Exception e){
+//            throw new HystrixBadRequestException(name);
+//        }
+//        Thread.sleep(2000);
         return "Run method, name:"+name;
+    }
+
+    /*
+        如果查询失败  Plan B
+            - 座位已经售完
+            - 请稍后再试
+            - 从缓存中获取已售座位信息
+     */
+    @Override
+    protected String getFallback() {
+        // fallback可以触发另外一个同类型的命令
+//        CommandHelloWorld c1 = new CommandHelloWorld("fallback");
+//        return c1.execute();
+        return "Fallback method name="+name;
     }
 
     /*
