@@ -40,20 +40,8 @@ public class CommandHelloWorld extends HystrixCommand<String> {
     protected String run() throws Exception {
         // 查询已售座位信息
         System.err.println("current Thread second:"+Thread.currentThread().getName());
-        int i = 6/0;
-//        Thread.sleep(800);
+        Thread.sleep(800);
         return "Run method, name:"+name;
-    }
-
-    /*
-        如果查询失败  Plan B
-            - 座位已经售完
-            - 请稍后再试
-            - 从缓存中获取已售座位信息
-     */
-    @Override
-    protected String getFallback() {
-        return "Fallback method, name="+name;
     }
 
     /*
