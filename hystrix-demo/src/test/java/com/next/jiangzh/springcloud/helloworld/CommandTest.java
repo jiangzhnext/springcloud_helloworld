@@ -135,4 +135,39 @@ public class CommandTest {
         Thread.sleep(2000L);
     }
 
+
+    @Test
+    public void threadPoolTest() throws InterruptedException {
+        MyThread t1 = new MyThread("01");
+        MyThread t2 = new MyThread("02");
+        MyThread t3 = new MyThread("03");
+        MyThread t4 = new MyThread("04");
+        MyThread t5 = new MyThread("05");
+
+
+        t1.start();
+        t2.start();
+        t3.start();
+        t4.start();
+        t5.start();
+
+        Thread.sleep(3000);
+    }
+
+    static class MyThread extends Thread{
+
+        private String name;
+        public MyThread(String name){
+            this.name = name;
+        }
+
+        @Override
+        public void run() {
+            CommandHelloWorld helloWorld = new CommandHelloWorld(name);
+            System.out.println("name="+name+" , result="+helloWorld.execute());
+        }
+    }
+
 }
+
+

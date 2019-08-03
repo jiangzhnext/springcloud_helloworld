@@ -18,3 +18,4 @@
 | v7.12 | HystrixObservableCommand演示 |  |
 | v7.13 | 设置GroupKey和CommandKeyName |  |
 | v7.17 | 请求合并演示 |  |
+| v7.17 | 线程池核心配置演示 |  |

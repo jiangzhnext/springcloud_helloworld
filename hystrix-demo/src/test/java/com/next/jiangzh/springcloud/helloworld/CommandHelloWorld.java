@@ -1,9 +1,6 @@
 package com.next.jiangzh.springcloud.helloworld;
 
-import com.netflix.hystrix.HystrixCommand;
-import com.netflix.hystrix.HystrixCommandGroupKey;
-import com.netflix.hystrix.HystrixCommandKey;
-import com.netflix.hystrix.HystrixCommandProperties;
+import com.netflix.hystrix.*;
 
 public class CommandHelloWorld extends HystrixCommand<String> {
 
@@ -16,9 +13,19 @@ public class CommandHelloWorld extends HystrixCommand<String> {
         super(Setter
                 .withGroupKey(HystrixCommandGroupKey.Factory.asKey("commandHelloWorld"))
                 .andCommandKey(HystrixCommandKey.Factory.asKey("commandKeyName"))
+                .andThreadPoolKey(HystrixThreadPoolKey.Factory.asKey("nextThreadPool"))
                 .andCommandPropertiesDefaults(
                         HystrixCommandProperties.defaultSetter()
                             .withRequestCacheEnabled(false)
+                            .withExecutionTimeoutInMilliseconds(1000)
+                            .withExecutionIsolationStrategy(HystrixCommandProperties.ExecutionIsolationStrategy.THREAD)
+                )
+                .andThreadPoolPropertiesDefaults(
+                        HystrixThreadPoolProperties.Setter()
+                        // 限流
+                        .withCoreSize(2)
+                        .withMaxQueueSize(2)
+                        .withMaximumSize(3).withAllowMaximumSizeToDivergeFromCoreSize(true)
                 )
         );
         this.name = name;
@@ -32,8 +39,7 @@ public class CommandHelloWorld extends HystrixCommand<String> {
     protected String run() throws Exception {
         // 查询已售座位信息
         System.err.println("current Thread second:"+Thread.currentThread().getName());
-        Thread.sleep(800l);
-
+        Thread.sleep(800);
         return "Run method, name:"+name;
     }
 
