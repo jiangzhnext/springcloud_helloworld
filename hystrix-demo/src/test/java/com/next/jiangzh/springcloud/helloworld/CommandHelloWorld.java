@@ -20,9 +20,12 @@ public class CommandHelloWorld extends HystrixCommand<String> {
                         .withRequestCacheEnabled(false)
                         .withExecutionTimeoutInMilliseconds(1000)
                         .withExecutionIsolationStrategy(HystrixCommandProperties.ExecutionIsolationStrategy.SEMAPHORE)
-                        .withExecutionIsolationSemaphoreMaxConcurrentRequests(2)
-                        .withFallbackIsolationSemaphoreMaxConcurrentRequests(2)
+//                        .withExecutionIsolationSemaphoreMaxConcurrentRequests(2)
+//                        .withFallbackIsolationSemaphoreMaxConcurrentRequests(2)
                         .withFallbackEnabled(true)
+                        .withCircuitBreakerRequestVolumeThreshold(2)
+                        .withCircuitBreakerErrorThresholdPercentage(50)
+//                        .withCircuitBreakerForceOpen(true)
                 )
 //                .andThreadPoolPropertiesDefaults(
 //                        HystrixThreadPoolProperties.Setter()
@@ -43,12 +46,9 @@ public class CommandHelloWorld extends HystrixCommand<String> {
     protected String run() throws Exception {
         // 查询已售座位信息
         System.err.println("current Thread second:"+Thread.currentThread().getName());
-//        try{
-//            int i = 6/0;
-//        }catch (Exception e){
-//            throw new HystrixBadRequestException(name);
-//        }
-//        Thread.sleep(2000);
+        if(name.equals("jiangzh")){
+            int i = 6/0;
+        }
         return "Run method, name:"+name;
     }
 
