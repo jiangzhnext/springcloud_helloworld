@@ -26,7 +26,7 @@ public class ConsumerControllerTest extends BaseControllerTest {
     public void sayHello() throws Exception{
         String uri = "/consumer/sayHello";
 
-        for(int i=0;i<10;i++){
+        for(int i=0;i<2;i++){
             String mvcResult=mockMvc.perform(MockMvcRequestBuilders.get(uri)
                     .param("message","eurekaClient")
                     .accept(MediaType.APPLICATION_JSON_UTF8))

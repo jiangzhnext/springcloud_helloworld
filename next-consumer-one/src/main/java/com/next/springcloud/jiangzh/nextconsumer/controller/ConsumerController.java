@@ -1,5 +1,6 @@
 package com.next.springcloud.jiangzh.nextconsumer.controller;
 
+import com.next.springcloud.jiangzh.nextconsumer.service.ConsumerFeignServiceAPI;
 import com.next.springcloud.jiangzh.nextconsumer.service.ConsumerHelloServiceAPI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,11 +13,14 @@ public class ConsumerController {
     @Autowired
     private ConsumerHelloServiceAPI serviceAPI;
 
+    @Autowired
+    private ConsumerFeignServiceAPI feignServiceAPI;
+
     @RequestMapping(value = "/consumer/sayHello",method = RequestMethod.GET)
     public String sayHello(String message){
-        System.err.println("now Consumer Controller-message : "+message);
+        System.err.println("now Consumer feignServiceAPI Controller-message : "+message);
 
-        return serviceAPI.showHello(message);
+        return feignServiceAPI.showHello(message);
     }
 
 }
