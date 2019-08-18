@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 @Service
-@Primary
 public class ConsumerFallbackFeignServiceImpl implements ConsumerFeignServiceAPI {
 
     @Override
@@ -14,8 +13,8 @@ public class ConsumerFallbackFeignServiceImpl implements ConsumerFeignServiceAPI
         return "fallback message："+message;
     }
 
-    @Override
-    public String postTest(String nextMsg, String bodyMsg) {
-        return null;
-    }
+//    @Override
+//    public String postTest(String nextMsg, String bodyMsg) {
+//        return null;
+//    }
 }
