@@ -11,8 +11,12 @@ public class ProviderController {
     private ProviderHelloServiceAPI serviceAPI;
 
     @RequestMapping(value = "/provider/sayHello",method = RequestMethod.GET)
-    public String sayHello(String message){
+    public String sayHello(String message) throws Exception {
         System.err.println("now ProviderController-message"+message);
+
+        if(message.equals("jiangzh")){
+            throw new Exception(message);
+        }
 
         return serviceAPI.showHello(message);
     }
