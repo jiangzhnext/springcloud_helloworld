@@ -17,12 +17,12 @@ public class RestConfig {
 
     @Bean
     public IRule iRule(){
-        return new RandomRule();
+        return new RoundRobinRule();
     }
 
-    @Bean
-    public IPing iPing(){
-        return new PingUrl(false,"/provider/sayHello?message=ping");
-    }
+//    @Bean
+//    public IPing iPing(){
+//        return new PingUrl(false,"/provider/sayHello?message=ping");
+//    }
 
 }
