@@ -1,9 +1,11 @@
 package com.next.springcloud.jiangzh.nextconsumer.service.fallback;
 
 import com.next.springcloud.jiangzh.nextconsumer.service.ConsumerFeignServiceAPI;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 @Service
+@Primary
 public class ConsumerFallbackFeignServiceImpl implements ConsumerFeignServiceAPI {
 
     @Override

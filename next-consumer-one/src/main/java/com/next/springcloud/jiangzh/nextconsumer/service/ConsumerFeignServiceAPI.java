@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @FeignClient(value = "helloService",
         path = "/provider",
+        primary = false,
         fallbackFactory = ConsumerFallbackFactory.class)
 public interface ConsumerFeignServiceAPI {
 
