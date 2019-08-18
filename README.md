@@ -29,3 +29,4 @@
 | v9.04 | FeignClient之URL参数 |  |
 | v9.05 | FeignClient之fallback参数演示 |  |
 | v9.06 | FeignClient之fallbackFactory参数演示 |  |
+| v9.07 | FeignClient之path参数演示 |  |

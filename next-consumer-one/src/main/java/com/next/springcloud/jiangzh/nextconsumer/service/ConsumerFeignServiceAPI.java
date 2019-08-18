@@ -5,13 +5,15 @@ import com.next.springcloud.jiangzh.nextconsumer.service.fallback.ConsumerFallba
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(value = "helloService",fallbackFactory = ConsumerFallbackFactory.class)
+@FeignClient(value = "helloService",
+        path = "/provider",
+        fallbackFactory = ConsumerFallbackFactory.class)
 public interface ConsumerFeignServiceAPI {
 
-    @RequestMapping(value = "/provider/sayHello",method = RequestMethod.GET)
+    @RequestMapping(value = "/sayHello",method = RequestMethod.GET)
     String showHello(@RequestParam("message") String message);
 
-    @RequestMapping(value = "/provider/sayHello/{nextMsg}",method = RequestMethod.POST)
+    @RequestMapping(value = "/sayHello/{nextMsg}",method = RequestMethod.POST)
     String postTest(@PathVariable("nextMsg")String nextMsg, @RequestBody String bodyMsg);
 
 }
