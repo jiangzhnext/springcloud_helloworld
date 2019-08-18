@@ -16,7 +16,7 @@ eureka:
 
 feign:
   hystrix:
-    enabled: false
+    enabled: true
 
 ribbon:
   ConnectTimeout: 500
@@ -25,10 +25,18 @@ ribbon:
 helloService:
   ribbon:
     ConnectTimeout: 500
-    ReadTimeout: 700
+    ReadTimeout: 900
     OkToRetryOnAllOperations: true
     MaxAutoRetriesNextServer: 2
     MaxAutoRetries: 1
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 700
 
 logging:
   config: classpath:logback.xml
