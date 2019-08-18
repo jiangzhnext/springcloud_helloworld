@@ -20,10 +20,10 @@ public class ConsumerFallbackFactory implements FallbackFactory<ConsumerFeignSer
                 return "FallbackFactory message："+message;
             }
 
-//            @Override
-//            public String postTest(String nextMsg, String bodyMsg) {
-//                return null;
-//            }
+            @Override
+            public String postTest(String nextMsg, String bodyMsg) {
+                return null;
+            }
         };
     }
 

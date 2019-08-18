@@ -32,3 +32,4 @@
 | v9.07 | FeignClient之path参数演示 |  |
 | v9.08 | FeignClient之primary参数演示 |  |
 | v9.10 | FeignClient之conf参数演示 |  |
+| v9.11 | FeignClient之自定义编解码器 |  |

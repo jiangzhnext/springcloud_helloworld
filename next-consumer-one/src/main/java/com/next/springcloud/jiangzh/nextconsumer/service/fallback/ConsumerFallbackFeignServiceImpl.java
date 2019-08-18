@@ -13,8 +13,8 @@ public class ConsumerFallbackFeignServiceImpl implements ConsumerFeignServiceAPI
         return "fallback message："+message;
     }
 
-//    @Override
-//    public String postTest(String nextMsg, String bodyMsg) {
-//        return null;
-//    }
+    @Override
+    public String postTest(String nextMsg, String bodyMsg) {
+        return null;
+    }
 }
