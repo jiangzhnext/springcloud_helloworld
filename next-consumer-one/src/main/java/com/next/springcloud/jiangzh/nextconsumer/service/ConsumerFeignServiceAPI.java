@@ -3,7 +3,7 @@ package com.next.springcloud.jiangzh.nextconsumer.service;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(value = "helloService")
+@FeignClient(value = "nextProvider",url = "http://localhost:8203")
 public interface ConsumerFeignServiceAPI {
 
     @RequestMapping(value = "/provider/sayHello",method = RequestMethod.GET)
