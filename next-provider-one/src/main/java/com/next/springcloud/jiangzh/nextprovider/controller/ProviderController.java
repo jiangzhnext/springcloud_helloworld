@@ -2,9 +2,7 @@ package com.next.springcloud.jiangzh.nextprovider.controller;
 
 import com.next.springcloud.jiangzh.nextprovider.service.ProviderHelloServiceAPI;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ProviderController {
@@ -17,6 +15,13 @@ public class ProviderController {
         System.err.println("now ProviderController-message"+message);
 
         return serviceAPI.showHello(message);
+    }
+
+    @RequestMapping(value = "/provider/sayHello/{nextMsg}",method = RequestMethod.POST)
+    public String postTest(@PathVariable("nextMsg")String nextMsg,@RequestBody String bodyMsg){
+        System.err.println("postTest-nextMsg:"+nextMsg + " , bodyMsg:"+bodyMsg);
+
+        return serviceAPI.showHello(nextMsg);
     }
 
 }

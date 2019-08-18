@@ -1,14 +1,15 @@
 package com.next.springcloud.jiangzh.nextconsumer.service;
 
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @FeignClient(value = "helloService")
 public interface ConsumerFeignServiceAPI {
 
     @RequestMapping(value = "/provider/sayHello",method = RequestMethod.GET)
     String showHello(@RequestParam("message") String message);
+
+    @RequestMapping(value = "/provider/sayHello/{nextMsg}",method = RequestMethod.POST)
+    String postTest(@PathVariable("nextMsg")String nextMsg, @RequestBody String bodyMsg);
 
 }

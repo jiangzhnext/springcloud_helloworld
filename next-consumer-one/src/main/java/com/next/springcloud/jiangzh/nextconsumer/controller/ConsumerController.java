@@ -20,6 +20,10 @@ public class ConsumerController {
     public String sayHello(String message){
         System.err.println("now Consumer feignServiceAPI Controller-message : "+message);
 
+        // /provider/sayHello/next
+        String msgJsonStr = "{\"key\":\"value\"}";
+        feignServiceAPI.postTest(message,msgJsonStr);
+
         return feignServiceAPI.showHello(message);
     }
 
