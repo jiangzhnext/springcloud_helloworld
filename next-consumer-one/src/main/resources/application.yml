@@ -16,7 +16,16 @@ eureka:
 
 feign:
   hystrix:
-    enabled: true
+    enabled: false
+
+ribbon:
+  ConnectTimeout: 500
+  ReadTimeout: 600
+
+helloService:
+  ribbon:
+    ConnectTimeout: 500
+    ReadTimeout: 900
 
 logging:
   config: classpath:logback.xml

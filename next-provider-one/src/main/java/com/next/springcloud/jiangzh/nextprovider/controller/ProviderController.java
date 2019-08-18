@@ -18,6 +18,10 @@ public class ProviderController {
             throw new Exception(message);
         }
 
+        if(message.equals("timeout")){
+            Thread.sleep(800);
+        }
+
         return serviceAPI.showHello(message);
     }
 
