@@ -35,3 +35,4 @@
 | v9.11 | FeignClient之自定义编解码器 |  |
 | v9.13 | Feign整合Ribbon自定义配置演示|  |
 | v9.14 | Ribbon全局配置和单服务配置演示|  |
+| v9.15 | Ribbon重试机制演示|  |

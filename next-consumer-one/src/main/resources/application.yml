@@ -25,7 +25,10 @@ ribbon:
 helloService:
   ribbon:
     ConnectTimeout: 500
-    ReadTimeout: 900
+    ReadTimeout: 700
+    OkToRetryOnAllOperations: true
+    MaxAutoRetriesNextServer: 2
+    MaxAutoRetries: 1
 
 logging:
   config: classpath:logback.xml
