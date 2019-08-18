@@ -1,10 +1,11 @@
 package com.next.springcloud.jiangzh.nextconsumer.service;
 
+import com.next.springcloud.jiangzh.nextconsumer.service.fallback.ConsumerFallbackFactory;
 import com.next.springcloud.jiangzh.nextconsumer.service.fallback.ConsumerFallbackFeignServiceImpl;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(value = "helloService",fallback = ConsumerFallbackFeignServiceImpl.class)
+@FeignClient(value = "helloService",fallbackFactory = ConsumerFallbackFactory.class)
 public interface ConsumerFeignServiceAPI {
 
     @RequestMapping(value = "/provider/sayHello",method = RequestMethod.GET)

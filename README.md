@@ -27,3 +27,5 @@
 | v9.02 | Feign之HelloWorld演示 |  |
 | v9.03 | Feign参数绑定 |  |
 | v9.04 | FeignClient之URL参数 |  |
+| v9.05 | FeignClient之fallback参数演示 |  |
+| v9.06 | FeignClient之fallbackFactory参数演示 |  |
