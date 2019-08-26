@@ -23,7 +23,8 @@ zuul:
     api-consumer:
       path: /nextconsume/**
       serviceId: hello-service-consumer
-
+  # /nextconsume/order/consumer/sayhello?message=next
+  # /nextconsume/cinema/consumer?msg=next  窄化处理
   ignored-services: "*"
 
 logging:
