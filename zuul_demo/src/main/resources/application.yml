@@ -10,8 +10,13 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka/
 
+# ribbon.eureka.enable=false  servserList= http://....,...
+# openresty -> kong
 zuul:
   routes:
+    api-classic:
+#      path: /nextclassic/**
+#      url: http://localhost:8301
     api-next:
       path: /next/**
       serviceId: helloService
