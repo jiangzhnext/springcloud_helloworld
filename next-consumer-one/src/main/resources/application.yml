@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: helloServiceConsumer
+    name: hello-service-consumer
 
 eureka:
   client:

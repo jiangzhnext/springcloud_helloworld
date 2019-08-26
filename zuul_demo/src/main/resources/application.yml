@@ -22,7 +22,9 @@ zuul:
       serviceId: helloService
     api-consumer:
       path: /nextconsume/**
-      serviceId: helloServiceConsumer
+      serviceId: hello-service-consumer
+
+  ignored-services: "*"
 
 logging:
   config: classpath:logback.xml
