@@ -26,6 +26,7 @@ zuul:
   # /nextconsume/order/consumer/sayhello?message=next
   # /nextconsume/cinema/consumer?msg=next  窄化处理
   ignored-services: "*"
+  sensitive-headers:
 
 logging:
   config: classpath:logback.xml
