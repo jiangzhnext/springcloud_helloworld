@@ -12,6 +12,11 @@ spring:
           uri: https://github.com/woaijiadanoo/springconfig.git
           username: woaijiadanoo
           password: jiangzh_next@123
+          basedir: ./config_server_demo/gitdata
+          repos:
+            cinema:
+              pattern: cinema/*
+              uri: https://github.com/woaijiadanoo/springcloud_config_spec.git
 
 logging:
   config: classpath:logback.xml
