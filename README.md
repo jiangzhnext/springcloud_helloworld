@@ -48,5 +48,6 @@
 | v11.14 | 自定义Filter实现 |  |
 | ------ | ------ | ------ |
 | v13.03 | SpringCloud Config基础环境构建 |  |
+| v13.04 | Config Server配置和使用 |  |
 
 

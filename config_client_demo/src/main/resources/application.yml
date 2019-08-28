@@ -1,1 +1,10 @@
+server:
+  port: 8800
 
+spring:
+  application:
+    name: config-client
+
+
+logging:
+  config: classpath:logback.xml

@@ -1,2 +1,17 @@
+server:
+  port: 8900
 
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      label: master
+      server:
+        git:
+          uri: https://github.com/woaijiadanoo/springconfig.git
+          username: woaijiadanoo
+          password: jiangzh_next@123
 
+logging:
+  config: classpath:logback.xml
