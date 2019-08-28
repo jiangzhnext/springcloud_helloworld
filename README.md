@@ -50,6 +50,7 @@
 | v13.03 | SpringCloud Config基础环境构建 |  |
 | v13.04 | Config Server配置和使用 |  |
 | v13.05 | Config Client配置和使用 |  |
-| v13.05 | Config Client配置和使用 |  |
+| v13.06 | Config Server参数之repos |  |
+| v13.07 | Config Server参数之searchPaths |  |
 
 
