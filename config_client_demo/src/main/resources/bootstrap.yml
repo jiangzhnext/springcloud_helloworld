@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: cinema
+  cloud:
+    config:
+      uri: http://localhost:8900/
+      label: master

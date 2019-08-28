@@ -3,8 +3,10 @@ server:
 
 spring:
   application:
-    name: config-client
+    name: cinema
 
+username: aaa
+password: bbb
 
 logging:
   config: classpath:logback.xml
