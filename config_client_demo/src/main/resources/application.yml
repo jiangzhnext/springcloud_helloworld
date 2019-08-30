@@ -5,6 +5,12 @@ spring:
   application:
     name: cinema
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, refresh
+
 username: aaa
 password: bbb
 

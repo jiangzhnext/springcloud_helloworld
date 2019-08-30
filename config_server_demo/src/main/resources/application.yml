@@ -18,6 +18,7 @@ spring:
 #              pattern: cinema/*
 #              uri: https://github.com/woaijiadanoo/springcloud_config_spec.git
           search-paths: cinema
+          clone-on-start: true
 
 logging:
   config: classpath:logback.xml

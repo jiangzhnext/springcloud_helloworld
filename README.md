@@ -52,5 +52,6 @@
 | v13.05 | Config Client配置和使用 |  |
 | v13.06 | Config Server参数之repos |  |
 | v13.07 | Config Server参数之searchPaths |  |
+| v13.11 | 启动克隆模式 |  |
 
 
